@@ -122,7 +122,7 @@ const App = () => {
     if(pos){
       phoneService
         .deletePerson(id)
-        .then(res => {
+        .then(() => {
           setNotifType('success')
           setErrorMessage(`Deleted ${name}`)
           setTimeout(()=>{

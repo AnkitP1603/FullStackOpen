@@ -1,39 +1,39 @@
-import dotenv from "dotenv";
-import mongoose from "mongoose";
+import dotenv from 'dotenv'
+import mongoose from 'mongoose'
 
-dotenv.config();
-mongoose.set("strictQuery", false)
+dotenv.config()
+mongoose.set('strictQuery', false)
 
 const url = process.env.MONGODB_URI
 
 console.log('connecting to ', url)
-mongoose.connect(url,{family:4})
-    .then(res => {
-        console.log('connected to MongoDB')
-    })
-    .catch(error => {
-        console.log('error connecting to MongoDB:', error.message)
-    })
+mongoose.connect(url,{ family:4 })
+  .then(() => {
+    console.log('connected to MongoDB')
+  })
+  .catch(error => {
+    console.log('error connecting to MongoDB:', error.message)
+  })
 
 
 const personSchema = new mongoose.Schema({
-    name: { 
-        type: String,
-        required: true,
-        minLength: 3,
-        unique: true,
+  name: {
+    type: String,
+    required: true,
+    minLength: 3,
+    unique: true,
+  },
+  number: {
+    type: String,
+    required: true,
+    validate : {
+      validator: function(v){
+        return /^\d{2,3}-\d+$/.test(v)
+      },
+      message: props => `${props.value} is not a valid phone number!`
     },
-    number: {
-        type: String,
-        required: true,
-        validate : {
-            validator: function(v){
-                return /^\d{2,3}-\d+$/.test(v)
-            },
-            message: props => `${props.value} is not a valid phone number!`
-        },
-        minLength: 8,
-    }
+    minLength: 8,
+  }
 })
 
 personSchema.set('toJSON', {
@@ -44,6 +44,6 @@ personSchema.set('toJSON', {
   }
 })
 
-const Person = mongoose.model("Person", personSchema)
+const Person = mongoose.model('Person', personSchema)
 
 export default Person
