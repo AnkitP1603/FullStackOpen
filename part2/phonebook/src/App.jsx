@@ -64,11 +64,13 @@ const App = () => {
             setNewNumber('')
           }).catch(e => {
             setNotifType('error')
-            setErrorMessage(`Information of ${updatedPerson.name} has already been removed from server`)
+            setErrorMessage(`error updating ${updatedPerson.name}'s number: ${e.response.data.error}`)
             setTimeout(()=>{
               setErrorMessage(null)
             },5000)
-            setPersons(persons.filter(p => p.id !== updatedPerson.id))
+            if(e.response.status === 404){ 
+              setPersons(persons.filter(p => p.id !== updatedPerson.id))
+            }
           })
       }
 
@@ -88,6 +90,14 @@ const App = () => {
         setPersons(persons.concat(res))
         setNewName('')
         setNewNumber('')
+      })
+      .catch(error => {
+        console.log(error.response.data.error)
+        setNotifType('error')
+        setErrorMessage(error.response.data.error)
+        setTimeout(()=>{
+          setErrorMessage(null)
+        },5000)
       })
   }
 
