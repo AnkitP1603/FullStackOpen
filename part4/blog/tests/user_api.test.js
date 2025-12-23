@@ -3,7 +3,7 @@ import app from '../app.js'
 import mongoose from 'mongoose'
 import assert from 'node:assert'
 import { describe, test, beforeEach, after } from 'node:test'
-import bcrypt from 'bcrypt'
+import bcryptjs from 'bcryptjs'
 import User from '../models/user.js'
 import helper from '../utils/test_helper.js'
 
@@ -13,7 +13,7 @@ describe('when there is initially one user in db', () => {
   beforeEach(async () => {
     await User.deleteMany({})
 
-    const passwordHash = await bcrypt.hash('sekret', 10)
+    const passwordHash = await bcryptjs.hash('sekret', 10)
     const user = new User({ username: 'root', passwordHash })
 
     await user.save()
