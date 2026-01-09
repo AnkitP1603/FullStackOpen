@@ -21,7 +21,7 @@ const notificationSlice = createSlice({
 
 let timeoutId = null
 
-export const showNotification = (message, type, timeout=5) => {
+export const notify = (message, type='success', timeout=5) => {
     console.log('showing notification', message, type)
     return dispatch => {
         if(timeoutId) {
