@@ -1,5 +1,5 @@
-import NotificationContext from "../notificationContext"
-import { useContext } from "react"
+import NotificationContext from '../notificationContext'
+import { useContext } from 'react'
 
 const Notification = () => {
   const { notification } = useContext(NotificationContext)
@@ -8,14 +8,10 @@ const Notification = () => {
     border: 'solid',
     padding: 10,
     borderWidth: 1,
-    marginBottom: 5
+    marginBottom: 5,
   }
 
-  return <div>
-    {notification && <div style={style}>
-      {notification}
-    </div>}
-  </div>
+  return <div>{notification && <div style={style}>{notification}</div>}</div>
 }
 
 export default Notification

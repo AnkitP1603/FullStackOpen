@@ -1,4 +1,5 @@
-import { useSelector } from "react-redux"
+import { useSelector } from 'react-redux'
+import { Alert } from 'react-bootstrap'
 
 const Notification = () => {
   const notification = useSelector((state) => state.notification)
@@ -18,7 +19,13 @@ const Notification = () => {
     borderRadius: '5px',
   }
 
-  return <div style={style}>{message}</div>
+  return (
+    <div>
+      <Alert variant={type === 'success' ? 'success' : 'danger'}>
+        {message}
+      </Alert>
+    </div>
+  )
 }
 
 export default Notification

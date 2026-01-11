@@ -1,28 +1,28 @@
 import React from 'react'
 import { useSelector } from 'react-redux'
 
-const User = ({id}) => {
-    const blogs = useSelector(state => state.blogs)
-    
-    const userBlogs = blogs.filter(blog => blog.user.id === id)
+const User = ({ id }) => {
+  const blogs = useSelector((state) => state.blogs)
 
-    const user = userBlogs.length > 0 ? userBlogs[0].user : null
+  const userBlogs = blogs.filter((blog) => blog.user.id === id)
 
-    if (!user) {
-        return null
-    }
+  const user = userBlogs.length > 0 ? userBlogs[0].user : null
 
-    return (
-        <div>
-            <h2>{user.name}</h2>
-            <p>added blogs</p>
-            <ul>
-                {userBlogs.map(blog => (
-                    <li key={blog.id}>{blog.title}</li>
-                ))}
-            </ul>
-        </div>
-    )
+  if (!user) {
+    return null
+  }
+
+  return (
+    <div>
+      <h2>{user.name}</h2>
+      <p>added blogs</p>
+      <ul>
+        {userBlogs.map((blog) => (
+          <li key={blog.id}>{blog.title}</li>
+        ))}
+      </ul>
+    </div>
+  )
 }
 
 export default User

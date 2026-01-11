@@ -9,32 +9,32 @@ export const getAnecdotes = async () => {
 }
 
 export const createAnecdote = async (newAnecdote) => {
-    const response = await fetch(baseUrl, {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json'
-        },
-        body: JSON.stringify(newAnecdote)
-    })
+  const response = await fetch(baseUrl, {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify(newAnecdote),
+  })
 
-    console.log("Response on createAnecdote: ", response)
-    if (!response.ok) {
-        throw new Error('Failed to create anecdote')
-    }
+  console.log('Response on createAnecdote: ', response)
+  if (!response.ok) {
+    throw new Error('Failed to create anecdote')
+  }
 
-    return await response.json()
+  return await response.json()
 }
 
 export const updateAnecdote = async (updateAnecdote) => {
-    const response = await fetch(`${baseUrl}/${updateAnecdote.id}`, {
-        method: 'PUT',
-        headers: {
-            'Content-Type': 'application/json'
-        },
-        body: JSON.stringify(updateAnecdote)
-    })
-    if (!response.ok) {
-        throw new Error('Failed to update anecdote')
-    }
-    return await response.json()
+  const response = await fetch(`${baseUrl}/${updateAnecdote.id}`, {
+    method: 'PUT',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify(updateAnecdote),
+  })
+  if (!response.ok) {
+    throw new Error('Failed to update anecdote')
+  }
+  return await response.json()
 }

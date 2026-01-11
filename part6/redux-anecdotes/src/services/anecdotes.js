@@ -1,53 +1,53 @@
-const baseUrl = 'http://localhost:3001/anecdotes'
+const baseUrl = "http://localhost:3001/anecdotes";
 
 const getAll = async () => {
-    const response = await fetch(baseUrl)
+  const response = await fetch(baseUrl);
 
-    if(!response.ok) {
-        throw new Error('Failed to fetch anecdotes')
-    }
-    
-    return await response.json()
-}
+  if (!response.ok) {
+    throw new Error("Failed to fetch anecdotes");
+  }
 
-const createNew = async content => {
-    const options = {
-        method: 'POST',
-        headers: {
-            'Content-Type' : 'application/json'
-        },
-        body: JSON.stringify({content, votes:0})
-    }
-    const response = await fetch(baseUrl, options)
+  return await response.json();
+};
 
-    if(!response.ok) {
-        throw new Error('Failed to create anecdote')
-    }
+const createNew = async (content) => {
+  const options = {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({ content, votes: 0 }),
+  };
+  const response = await fetch(baseUrl, options);
 
-    return await response.json()
-}
+  if (!response.ok) {
+    throw new Error("Failed to create anecdote");
+  }
 
-const voteAnecdote = async anecdote => {
-    const updatedAnecdote = {
-        ...anecdote,
-        votes: anecdote.votes + 1
-    }
+  return await response.json();
+};
 
-    const options = {
-        method: 'PUT',
-        headers: {
-            'Content-Type' : 'application/json'
-        },
-        body: JSON.stringify(updatedAnecdote)
-    }
+const voteAnecdote = async (anecdote) => {
+  const updatedAnecdote = {
+    ...anecdote,
+    votes: anecdote.votes + 1,
+  };
 
-    const updateResponse = await fetch(`${baseUrl}/${anecdote.id}`, options)
+  const options = {
+    method: "PUT",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(updatedAnecdote),
+  };
 
-    if(!updateResponse.ok) {
-        throw new Error('Failed to update anecdote')
-    }
+  const updateResponse = await fetch(`${baseUrl}/${anecdote.id}`, options);
 
-    return await updateResponse.json()
-}
+  if (!updateResponse.ok) {
+    throw new Error("Failed to update anecdote");
+  }
 
-export default { getAll, createNew, voteAnecdote }
+  return await updateResponse.json();
+};
+
+export default { getAll, createNew, voteAnecdote };

@@ -1,21 +1,21 @@
-import React from 'react'
+import React from "react";
 
 function CreateBlogForm({ handleCreateBlog }) {
-  const [title, setTitle] = React.useState('')
-  const [author, setAuthor] = React.useState('')
-  const [url, setUrl] = React.useState('')
+  const [title, setTitle] = React.useState("");
+  const [author, setAuthor] = React.useState("");
+  const [url, setUrl] = React.useState("");
 
   const addBlog = (event) => {
-    event.preventDefault()
+    event.preventDefault();
     handleCreateBlog({
       title: title,
       author: author,
-      url: url
-    })
-    setTitle('')
-    setAuthor('')
-    setUrl('')
-  }
+      url: url,
+    });
+    setTitle("");
+    setAuthor("");
+    setUrl("");
+  };
 
   return (
     <div>
@@ -23,27 +23,39 @@ function CreateBlogForm({ handleCreateBlog }) {
       <form onSubmit={addBlog}>
         <div>
           <label>
-                title:
-            <input type='text' value={title} onChange={(e) => setTitle(e.target.value)}></input>
+            title:
+            <input
+              type="text"
+              value={title}
+              onChange={(e) => setTitle(e.target.value)}
+            ></input>
           </label>
         </div>
         <div>
           <label>
-                author:
-            <input type='text' value={author} onChange={(e) => setAuthor(e.target.value)}></input>
+            author:
+            <input
+              type="text"
+              value={author}
+              onChange={(e) => setAuthor(e.target.value)}
+            ></input>
           </label>
         </div>
         <div>
           <label>
-                url:
-            <input type='text' value={url} onChange={(e) => setUrl(e.target.value)}></input>
+            url:
+            <input
+              type="text"
+              value={url}
+              onChange={(e) => setUrl(e.target.value)}
+            ></input>
           </label>
         </div>
 
-        <button type='submit'>create</button>
+        <button type="submit">create</button>
       </form>
     </div>
-  )
+  );
 }
 
-export default CreateBlogForm
+export default CreateBlogForm;

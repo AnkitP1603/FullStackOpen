@@ -1,14 +1,14 @@
-import Router from 'express'
-import Blog from '../models/blog.js'
-import User from '../models/user.js'
+import Router from "express";
+import Blog from "../models/blog.js";
+import User from "../models/user.js";
 
-const router = Router()
+const router = Router();
 
-router.post('/reset', async (request, response) => {
-  await Blog.deleteMany({})
-  await User.deleteMany({})
+router.post("/reset", async (request, response) => {
+  await Blog.deleteMany({});
+  await User.deleteMany({});
 
-  response.status(204).end()
-})
+  response.status(204).end();
+});
 
-export default router
+export default router;

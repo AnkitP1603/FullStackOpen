@@ -30,6 +30,7 @@ router.post('/', userExtractor, async (request, response) => {
   await user.save()
 
   const savedBlog = await blog.save()
+  await savedBlog.populate('user', { username: 1, name: 1 })
 
   response.status(201).json(savedBlog)
 })
@@ -71,6 +72,22 @@ router.put('/:id', async (request, response) => {
     new: true,
   }).populate('user', { username: 1, name: 1 })
   response.json(updatedBlog)
+})
+
+router.post('/:id/comments', async (request, response) => {
+  const { comment } = request.body
+  const id = request.params.id
+
+  const blog = await Blog.findById(id)
+  if (!blog) {
+    return response.status(404).json({ error: 'blog not found' })
+  }
+
+  blog.comments = blog.comments.concat(comment)
+  const updatedBlog = await blog.save()
+  await updatedBlog.populate('user', { username: 1, name: 1 })
+
+  response.status(201).json(updatedBlog)
 })
 
 module.exports = router

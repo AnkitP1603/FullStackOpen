@@ -1,13 +1,14 @@
-import React from 'react'
+import React from "react";
 
-function Filter({filter, handleFilterChange}) {
+function Filter({ filter, handleFilterChange }) {
   return (
     <form>
-        <div>
-          filter shown with: <input value={filter} onChange={handleFilterChange}/>
-        </div>
+      <div>
+        filter shown with:{" "}
+        <input value={filter} onChange={handleFilterChange} />
+      </div>
     </form>
-  )
+  );
 }
 
-export default Filter
+export default Filter;
